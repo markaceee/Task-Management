@@ -1,25 +1,15 @@
-import { Component } from "react"
-import { Route, Routes } from "react-router-dom"
-import AppContent from "./components/AppContent"
-import Home from "./components/Home"
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Routing from "./components/routing/Routing";
 
-class App extends Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      componentToShow: "login"
-    }
-  }
+const App = () => {
+  return (
+    <Router>
+      <div className="app">
+        <Routing />
+      </div>
+    </Router>
+  );
+};
 
-  render(){
-    return(
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<AppContent />} />
-      </Routes>
-    )
-  }
-}
-
-
-export default App
+export default App;
