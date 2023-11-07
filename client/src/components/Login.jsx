@@ -6,11 +6,28 @@ import {
 } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthData } from "../auth/AuthWrapper";
 
-const SignIn = () => {
-  const handleSubmit = () => {};
-  const forgotPassword = () => {};
+const Login = () => {
+  const navigate = useNavigate();
+  const { login } = AuthData();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null)
+
+
+  const doLogin = async (e) => {
+      e.preventDefault()
+      try {
+        await login(email, password)
+        window.location.reload();
+        navigate("/")
+      } catch (error) {
+        setErrorMessage(error)
+      }
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -46,11 +63,13 @@ const SignIn = () => {
                 </a>
               </div>
               <p className="text-gray-400 my-3">or use your email account</p>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={doLogin}>
                 <div className="flex flex-col items-center">
                   <div className="bg-gray-100 w-64 p-2 flex items-center rounded-md mb-3">
                     <FaRegEnvelope className="text-gray-400 mr-2" />
                     <input
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       type="email"
                       name="email"
                       placeholder="Email"
@@ -61,6 +80,8 @@ const SignIn = () => {
                   <div className="bg-gray-100 w-64 p-2 flex items-center rounded-md mb-3">
                     <MdLockOutline className="text-gray-400 mr-2" />
                     <input
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       type="password"
                       name="password"
                       placeholder="Password"
@@ -73,7 +94,7 @@ const SignIn = () => {
                       <input type="checkbox" name="remember" className="mr-1" />
                       Remember me
                     </label>
-                    <a onClick={forgotPassword} className="text-xs">
+                    <a className="text-xs">
                       Forgot Password?
                     </a>
                   </div>
@@ -94,7 +115,7 @@ const SignIn = () => {
               Fill up personal information and start journey with us.
             </p>
             <a className="cursor-pointer w-3/4 border-2 border-white rounded-full py-2 inline-block font-semibold hover:bg-white hover:text-green-500">
-              Signup
+              Register
             </a>
           </div>
         </div>
@@ -103,4 +124,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;

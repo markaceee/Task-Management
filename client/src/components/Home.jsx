@@ -1,14 +1,9 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+export const Home = () => {
 
-const Home = () => {
-  return (
-    <div>
-      <NavLink to="/signin">Login</NavLink> <br />
-      <NavLink to="/signup">Signup</NavLink> <br />
-      <NavLink to="/forgot-password">Forgot Password</NavLink> <br />
-    </div>
-  );
-};
-
-export default Home;
+     return (
+          <div className="page">
+               <h2>Home page</h2>
+               <p>This is the text for the home page</p>
+          </div>
+     )
+}

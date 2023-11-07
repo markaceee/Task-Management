@@ -3,7 +3,7 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import { FaRegEnvelope } from 'react-icons/fa';
 import { MdLockOutline } from 'react-icons/md';
 import { request } from "../axios_helper";
-const SignUp = () => {
+const Register = () => {
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -41,8 +41,6 @@ const SignUp = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-
-
         if (password === confirmPassword) {
             request("POST", "/register", register)
                 .then(response => {
@@ -58,7 +56,6 @@ const SignUp = () => {
 
 
     return (
-
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="flex items-center w-full justify-center text-center lg:p-0">
                 <div className="bg-white rounded-2xl shadow-2xl flex w-3/4 max-w-4xl md:flex-wrap ">
@@ -116,5 +113,4 @@ const SignUp = () => {
     );
 }
 
-export default SignUp;
-
+export default Register;
