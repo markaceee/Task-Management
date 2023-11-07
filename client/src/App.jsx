@@ -1,14 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import Routing from "./components/routing/Routing";
+import { BrowserRouter } from "react-router-dom";
+import { AuthWrapper } from "./auth/AuthWrapper";
 
 const App = () => {
   return (
-    <Router>
-      <div className="app">
-        <Routing />
-      </div>
-    </Router>
+    <BrowserRouter >
+      <AuthWrapper />
+    </BrowserRouter>
   );
 };
 

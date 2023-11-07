@@ -13,34 +13,34 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum Role {
-    USER(
-            Set.of(
-                    USER_READ,
-                    USER_UPDATE,
-                    USER_DELETE,
-                    USER_CREATE)),
-    ADMIN(
-            Set.of(
-                    ADMIN_READ,
-                    ADMIN_UPDATE,
-                    ADMIN_DELETE,
-                    ADMIN_CREATE,
-                    USER_READ,
-                    USER_UPDATE,
-                    USER_DELETE,
-                    USER_CREATE))
+        USER(
+                        Set.of(
+                                        USER_READ,
+                                        USER_UPDATE,
+                                        USER_DELETE,
+                                        USER_CREATE)),
+        ADMIN(
+                        Set.of(
+                                        ADMIN_READ,
+                                        ADMIN_UPDATE,
+                                        ADMIN_DELETE,
+                                        ADMIN_CREATE,
+                                        USER_READ,
+                                        USER_UPDATE,
+                                        USER_DELETE,
+                                        USER_CREATE))
 
-    ;
+        ;
 
-    @Getter
-    private final Set<Permission> permissions;
+        @Getter
+        private final Set<Permission> permissions;
 
-    public List<SimpleGrantedAuthority> getAuthorities() {
-        var authorities = getPermissions()
-                .stream()
-                .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
-                .collect(Collectors.toList());
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
-        return authorities;
-    }
+        public List<SimpleGrantedAuthority> getAuthorities() {
+                var authorities = getPermissions()
+                                .stream()
+                                .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
+                                .collect(Collectors.toList());
+                authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
+                return authorities;
+        }
 }
