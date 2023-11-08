@@ -3,6 +3,7 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import { FaRegEnvelope } from 'react-icons/fa';
 import { MdLockOutline } from 'react-icons/md';
 import { request } from "../axios_helper";
+import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -10,6 +11,7 @@ const Register = () => {
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [isPasswordMatch, setIsPasswordMatch] = useState(true)
+    const navigate = useNavigate();
 
     const handleFirstName = (event) => {
         setFirstName(event.target.value);
@@ -44,7 +46,8 @@ const Register = () => {
         if (password === confirmPassword) {
             request("POST", "/register", register)
                 .then(response => {
-                    console.log(response)
+                    navigate('/login')
+                    window.location.reload();
                 })
                 .catch(error => {
                     console.log(error)
@@ -103,9 +106,9 @@ const Register = () => {
                         <h2 className="text-3xl font-bold mb-2">Hello, Friend!</h2>
                         <div className="border-2 w-10 border-white inline-block my-2"></div>
                         <p className="mb-5">Fill up personal information and start journey with us.</p>
-                        <a className="cursor-pointer w-3/4 border-2 border-white rounded-full py-2 inline-block font-semibold hover:bg-white hover:text-green-500">
-                            Signup
-                        </a>
+                        <Link to={"/login"} className="cursor-pointer w-3/4 border-2 border-white rounded-full py-2 inline-block font-semibold hover:bg-white hover:text-green-500">
+                            Login
+                        </Link>
                     </div>
                 </div>
             </div>

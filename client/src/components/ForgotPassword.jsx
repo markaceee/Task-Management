@@ -1,5 +1,6 @@
 import React from "react";
 import { FaRegEnvelope } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   return (
@@ -43,9 +44,9 @@ const ForgotPassword = () => {
             <p className="mb-5">
               Fill up personal information and start journey with us.
             </p>
-            <a className="cursor-pointer w-3/4 border-2 border-white rounded-full py-2 inline-block font-semibold hover:bg-white hover:text-green-500">
+            <Link to={"/login"} className="cursor-pointer w-3/4 border-2 border-white rounded-full py-2 inline-block font-semibold hover:bg-white hover:text-green-500">
               Login
-            </a>
+            </Link>
           </div>
         </div>
       </div>

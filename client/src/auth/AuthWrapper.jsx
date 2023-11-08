@@ -2,12 +2,14 @@
 import { createContext, useContext } from "react";
 import { removeAuthHeader, request, setAuthHeader } from "../axios_helper";
 import { RenderMenu, RenderRoutes } from "../structure/RenderNavigation";
+import { useNavigate } from "react-router";
 
 const AuthContext = createContext();
 export const AuthData = () => useContext(AuthContext);
 
 
 export const AuthWrapper = () => {
+    const navigate = useNavigate();
     const login = (email, password) => {
         return new Promise((resolve, reject) => {
             request("POST", "/authenticate", {
@@ -29,7 +31,8 @@ export const AuthWrapper = () => {
 
     const logout = () => {
         removeAuthHeader();
-        window.reload();
+        navigate("/login");
+        window.location.reload();
     }
 
 

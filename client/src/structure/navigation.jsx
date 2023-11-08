@@ -8,8 +8,6 @@ import Register from "../components/Register";
 import TaskContent from "../components/TaskContent";
 
 export const nav = [
-    { path:     "/",         name: "Home",        element: <Home />,       isMenu: true,     isPrivate: false  },
-    { path:     "/about",    name: "About",       element: <About />,      isMenu: true,     isPrivate: false  },
     { path:     "/login",    name: "Login",       element: <Login />,      isMenu: false,    isPrivate: false  },
     { path:     "/register",    name: "Register",       element: <Register />,      isMenu: false,    isPrivate: false  },
     { path:     "/forgot-password",    name: "ForgotPassword",       element: <ForgotPassword />,      isMenu: false,    isPrivate: false  },
