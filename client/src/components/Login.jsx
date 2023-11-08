@@ -7,7 +7,7 @@ import {
 import { MdLockOutline } from "react-icons/md";
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthData } from "../auth/AuthWrapper";
 
 const Login = () => {
@@ -22,8 +22,8 @@ const Login = () => {
       e.preventDefault()
       try {
         await login(email, password)
+        navigate("/tasks")
         window.location.reload();
-        navigate("/")
       } catch (error) {
         setErrorMessage(error)
       }
@@ -94,9 +94,9 @@ const Login = () => {
                       <input type="checkbox" name="remember" className="mr-1" />
                       Remember me
                     </label>
-                    <a className="text-xs">
+                    <Link to={"/forgot-password"} className="text-xs">
                       Forgot Password?
-                    </a>
+                    </Link>
                   </div>
                   <button
                     type="submit"
@@ -114,9 +114,9 @@ const Login = () => {
             <p className="mb-5">
               Fill up personal information and start journey with us.
             </p>
-            <a className="cursor-pointer w-3/4 border-2 border-white rounded-full py-2 inline-block font-semibold hover:bg-white hover:text-green-500">
+            <Link to={"/register"} className="cursor-pointer w-3/4 border-2 border-white rounded-full py-2 inline-block font-semibold hover:bg-white hover:text-green-500">
               Register
-            </a>
+            </Link>
           </div>
         </div>
       </div>

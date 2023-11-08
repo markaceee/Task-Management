@@ -33,15 +33,15 @@ export const RenderMenu = () => {
     const { logout } = AuthData()
     const { decodedToken, isExpired } = useJwt(getAuthToken() ? getAuthToken() : "");
 
-    const MenuItem = ({ r }) => {
-        return (
-            <div className="menuItem"><Link to={r.path}>{r.name}</Link></div>
-        )
-    }
+    // const MenuItem = ({ r }) => {
+    //     return (
+    //         <div className="menuItem"><Link to={r.path}>{r.name}</Link></div>
+    //     )
+    // }
 
     return (
         <div className="menu">
-            {nav.map((r, i) => {
+            {/* {nav.map((r, i) => {
                 if (!r.isPrivate && r.isMenu) {
                     return (
                         <MenuItem key={i} r={r} />
@@ -51,12 +51,12 @@ export const RenderMenu = () => {
                         <MenuItem key={i} r={r} />
                     )
                 } else return false
-            })}
+            })} */}
 
-            {!isExpired ?
+            {/* {!isExpired ?
                 <div className="menuItem"><Link to={'#'} onClick={logout}>Log out</Link></div>
                 :
-                <div className="menuItem"><Link to={'login'}>Log in</Link></div>}
+                <div className="menuItem"><Link to={'login'}>Log in</Link></div>} */}
         </div>
     )
 }

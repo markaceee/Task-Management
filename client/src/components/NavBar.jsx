@@ -2,6 +2,9 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Fragment } from 'react';
 import LuffyIcon from '../assets/luffy.jfif';
+import { AuthData } from "../auth/AuthWrapper";
+
+
 
 const navigation = [
     { name: 'Home', href: '/', current: true },
@@ -15,6 +18,8 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+
+    const { logout } = AuthData();
     return (
         <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
@@ -114,12 +119,12 @@ export default function NavBar() {
                                             </Menu.Item>
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <a
-                                                        href="#"
+                                                    <button
+                                                        onClick={() => logout()}
                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
                                                         Sign out
-                                                    </a>
+                                                    </button>
                                                 )}
                                             </Menu.Item>
                                         </Menu.Items>
