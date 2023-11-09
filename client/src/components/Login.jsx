@@ -35,7 +35,7 @@ const Login = () => {
         <div className="bg-white rounded-2xl shadow-2xl flex w-3/4 max-w-4xl md:flex-wrap ">
           <div className="SignIn w-3/5 p-5">
             <div className="text-left font-bold">
-              <span className="text-green-500">WSWSWS</span>wswsws
+              <span className="text-green-500">Tsukiden Global</span> Solutions Inc.
             </div>
             <div className="py-10">
               <h2 className="text-3xl font-bold mb-2 text-green-500">
