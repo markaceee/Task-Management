@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaRegEnvelope } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ isExpired }) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isExpired) {
+      navigate(-1);
+    }
+  }, [isExpired, navigate]);
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="flex items-center w-full justify-center text-center lg:p-0">
@@ -44,7 +50,10 @@ const ForgotPassword = () => {
             <p className="mb-5">
               Fill up personal information and start journey with us.
             </p>
-            <Link to={"/login"} className="cursor-pointer w-3/4 border-2 border-white rounded-full py-2 inline-block font-semibold hover:bg-white hover:text-green-500">
+            <Link
+              to={"/login"}
+              className="cursor-pointer w-3/4 border-2 border-white rounded-full py-2 inline-block font-semibold hover:bg-white hover:text-green-500"
+            >
               Login
             </Link>
           </div>
