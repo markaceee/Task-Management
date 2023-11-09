@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useJwt } from "react-jwt";
-import { Link, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { AuthData } from "../auth/AuthWrapper";
 import { getAuthToken, removeAuthHeader } from "../axios_helper";
 import { nav } from "./navigation";
@@ -20,9 +20,10 @@ export const RenderRoutes = () => {
             {nav.map((r, i) => {
                 if (r.isPrivate && !isExpired) {
                     return <Route key={i} path={r.path} element={r.element} />
-                } else if (!r.isPrivate) {
+                } else if (!r.isPrivate && isExpired) {
                     return <Route key={i} path={r.path} element={r.element} />
-                } else return false
+                } else
+                    return <Route key={i} path="*" element={<Navigate to="/login" replace />}/>
             })}
         </Routes>
     )
