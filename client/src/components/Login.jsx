@@ -6,28 +6,33 @@ import {
 } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthData } from "../auth/AuthWrapper";
 
-const Login = () => {
+const Login = ({ isExpired }) => {
   const navigate = useNavigate();
   const { login } = AuthData();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null)
-
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const doLogin = async (e) => {
-      e.preventDefault()
-      try {
-        await login(email, password)
-        navigate("/tasks")
-        window.location.reload();
-      } catch (error) {
-        setErrorMessage(error)
-      }
-  }
+    e.preventDefault();
+    try {
+      await login(email, password);
+      navigate("/tasks");
+      window.location.reload();
+    } catch (error) {
+      setErrorMessage(error);
+    }
+  };
+
+  useEffect(() => {
+    if (!isExpired) {
+      navigate(-1);
+    }
+  }, [isExpired, navigate]);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -114,7 +119,10 @@ const Login = () => {
             <p className="mb-5">
               Fill up personal information and start journey with us.
             </p>
-            <Link to={"/register"} className="cursor-pointer w-3/4 border-2 border-white rounded-full py-2 inline-block font-semibold hover:bg-white hover:text-green-500">
+            <Link
+              to={"/register"}
+              className="cursor-pointer w-3/4 border-2 border-white rounded-full py-2 inline-block font-semibold hover:bg-white hover:text-green-500"
+            >
               Register
             </Link>
           </div>
