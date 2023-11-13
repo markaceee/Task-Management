@@ -4,7 +4,7 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { request } from "../axios_helper";
 import { Link, useNavigate } from "react-router-dom";
-const Register = ({ isExpired }) => {
+const Register = ({ decodedToken, isExpired }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -57,10 +57,13 @@ const Register = ({ isExpired }) => {
   };
 
   useEffect(() => {
-    if (!isExpired) {
-      navigate(-1);
+    if (decodedToken) {
+      if (!isExpired) {
+        console.log("test");
+        navigate(-1);
+      }
     }
-  }, [isExpired, navigate]);
+  }, [decodedToken, isExpired, navigate]);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

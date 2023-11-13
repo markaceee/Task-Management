@@ -10,12 +10,13 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthData } from "../auth/AuthWrapper";
 
-const Login = ({ isExpired }) => {
+const Login = ({ decodedToken, isExpired }) => {
   const navigate = useNavigate();
   const { login } = AuthData();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const doLogin = async (e) => {
     e.preventDefault();
@@ -29,10 +30,12 @@ const Login = ({ isExpired }) => {
   };
 
   useEffect(() => {
-    if (!isExpired) {
+    setIsLoading(true);
+
+    if (decodedToken && !isExpired) {
       navigate(-1);
     }
-  }, [isExpired, navigate]);
+  }, [decodedToken, isExpired, navigate]);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
