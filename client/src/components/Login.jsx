@@ -16,7 +16,6 @@ const Login = ({ decodedToken, isExpired }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const doLogin = async (e) => {
     e.preventDefault();
@@ -30,8 +29,6 @@ const Login = ({ decodedToken, isExpired }) => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-
     if (decodedToken && !isExpired) {
       navigate(-1);
     }
