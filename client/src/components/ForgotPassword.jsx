@@ -2,13 +2,17 @@ import React, { useEffect } from "react";
 import { FaRegEnvelope } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
-const ForgotPassword = ({ isExpired }) => {
+const ForgotPassword = ({ decodedToken, isExpired }) => {
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isExpired) {
-      navigate(-1);
+    if (decodedToken) {
+      console.log(isExpired);
+      if (!isExpired) {
+        console.log("test");
+        navigate(-1);
+      }
     }
-  }, [isExpired, navigate]);
+  }, [decodedToken, isExpired, navigate]);
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="flex items-center w-full justify-center text-center lg:p-0">
